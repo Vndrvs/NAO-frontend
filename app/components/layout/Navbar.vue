@@ -18,12 +18,13 @@ const navigation = getNavigation()
             v-for="item in navigation"
             :id="item.name.toLowerCase()"
             :key="item.to"
+            :to="item.to"
             :aria-label="item.name + ' navigation link'"
             class="flex items-center rounded-full border border-transparent px-4 py-1 transition-all duration-300 ease-in-out hover:border-white/5 hover:bg-zinc-900/50 hover:backdrop-blur-3xl sm:px-6"
           >
-            <UIcon
-              :name="item.icon"
-              class="size-7 font-light sm:size-6"
+            <Icon
+                :name="item.icon"
+                class="size-7 font-light sm:size-6"
             />
           </NuxtLink>
         </nav>
