@@ -13,7 +13,10 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-  modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon'],
+  modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxtjs/color-mode'],
+  colorMode: {
+    classSuffix: ''
+  },
   css: ['./app/assets/css/main.css'],
   vite: {
     plugins: [
