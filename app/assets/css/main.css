@@ -10,7 +10,6 @@
   --color-bg: var(--color-white);
   --color-bg-secondary: var(--color-gray-200);
   --color-component-bg: var(--color-gray-300);
-  --color-component-bg: var(--color-gray-400);
   --color-component-bg-hover: var(--color-gray-500);
   --color-component-bg-active: var(--color-gray-600);
   --color-text-primary: var(--color-blue-950);
@@ -23,7 +22,6 @@
   --color-bg: var(--color-black);
   --color-bg-secondary: var(--color-gray-950);
   --color-component-bg: var(--color-gray-800);
-  --color-component-bg: var(--color-gray-700);
   --color-component-bg-hover: var(--color-gray-600);
   --color-component-bg-active: var(--color-gray-500);
   --color-text-primary: var(--color-gray-100);
