@@ -1,47 +1,63 @@
 <script setup lang="ts">
-    const props = defineProps<{
-        links?:  any[]
-    }>();
+defineProps<{
+    item: {
+        name: string
+        to: string
+        icon?: string
+        children?: { name: string; to: string }[]
+    }
+}>();
 </script>
 
 <template>
     <div class="flex flex-col">
-        <template 
-            v-for="(l,i) in links" 
-            :key="i"
-        >
         <NuxtLink 
-            v-if=!l.items 
-            to="/"
+            v-if="!item.children"
+            :to="item.to"
             class="inline-flex items-center gap-4 px-4 py-3 text-left text-text-secondary" 
         >
-        <Icon 
-            v-if="l.icon"
-            :name="l.icon" 
-            class="w-5 h-5 text-text-secondary"
-        />
-        <p class="truncate">{{ l.title }}</p>
-    </NuxtLink>
-    <HDisclosure v-else>
-        <HDisclosureButton class="inline-flex items-center gap-4 px-4 py-3 text-left text-text-secondary" >
-            <div class="flex items-center gap-4">
-                <Icon 
-                    v-if="l.icon"
-                    :name="l.icon" 
-                    class="w-5 h-5 text-text-secondary"
-                />
-                <p class="truncate">{{ l.title }}</p>
-            </div>
-            <div>
-                <Icon 
-                    name="lucide:chevron-down" 
-                    class="h-5 w-5 text-text-secondary transition"/>
-            </div>
-        </HDisclosureButton>
-    </HDisclosure>
-</template>
+            <Icon 
+                v-if="item.icon"
+                :name="item.icon" 
+                class="w-5 h-5 text-text-secondary"
+            />
+            <span class="truncate">{{ item.name }}</span>
+        </NuxtLink>
+        <HDisclosure 
+            v-else 
+            v-slot="{ open }"
+            as="div"
+            class="w-full"
+        >
+            <HDisclosureButton class="inline-flex items-center gap-4 px-4 py-3 text-left text-text-secondary" >
+                <div class="flex items-center gap-4">
+                    <Icon 
+                        v-if="item.icon"
+                        :name="item.icon" 
+                        class="w-5 h-5 text-text-secondary"
+                    />
+                    <p class="truncate">{{ item.name }}</p>
+                </div>
+                <div>
+                    <Icon 
+                        name="lucide:chevron-down" 
+                        :class="[open && 'rotate-180']"
+                        class="h-5 w-5 text-text-secondary transition"
+                    />
+                </div>
+            </HDisclosureButton>
 
-</div>
+            <HDisclosurePanel class="mx-6 flex flex-col border-l px-3">
+                <NuxtLink 
+                    v-for="subItem in item.children"
+                    :key="subItem.to"
+                    :to="subItem.to"
+                    class="rounded-md px-3 py-1.5 text-sm hover:bg-muted" 
+                >
+                    {{ subItem.name }}
+                </NuxtLink>
+            </HDisclosurePanel>
+        </HDisclosure>
+    </div>
 </template>
-
 

@@ -4,16 +4,25 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   eslint: {
-		config: {
-			stylistic: {
-				semi: true,
-				quotes: "double",
-				commaDangle: "always-multiline",
-				indent: "tab",
-			},
-		},
-	},
-  modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@nuxtjs/color-mode'],
+        config: {
+            stylistic: {
+                semi: true,
+                quotes: "double",
+                commaDangle: "always-multiline",
+                indent: "tab",
+            },
+        },
+    },
+  modules: [
+   '@nuxt/eslint',
+   '@nuxt/fonts',
+   '@nuxt/icon',
+   '@nuxtjs/color-mode',
+   'nuxt-headlessui',
+  ],
+  headlessui: {
+    prefix: 'H'
+  },
   colorMode: {
     classSuffix: ''
   },

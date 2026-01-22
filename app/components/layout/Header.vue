@@ -1,15 +1,23 @@
 <script setup lang="ts">
-    
     const colorMode = useColorMode();
     const toggleTheme = () => {
         colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light';
     };
+    const isOpen = ref(false);
 </script>
 
 <template>
     <header class="sticky top-0 z-20 border-b bg-bg backdrop-blur">
-        <div class="container flex h-16 items-center justify-between">
+        <div class="container mx-auto flex h-16 items-center justify-between">
             <div class="flex items-center gap-3">
+                <button
+                    aria-label="Open menu"
+                    class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-background lg:hidden"
+                    @click="isOpen = true"
+                >
+                <span class="sr-only">Button used to open menu</span>
+                <Icon name="heroicons:bars-2" />
+                </button>
                 <Icon
                     name="uil:github"
                     alt="Visual logo of the application"

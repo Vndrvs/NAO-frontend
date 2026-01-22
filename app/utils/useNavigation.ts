@@ -1,7 +1,7 @@
 export type Navigation = {
     name: string;
     to: string;
-    icon?: string;
+    icon: string;
 };
 
 export function getNavigation(): Navigation[] {
