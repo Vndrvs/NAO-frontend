@@ -34,12 +34,13 @@
                     aria-label="Toggle Theme"
                     @click="toggleTheme" 
                 >
-                <Icon
-                    name="lucide:sun"
-                    class="h-5 w-5"
-                />
-            </button>
+                    <Icon
+                        name="lucide:sun"
+                        class="h-5 w-5"
+                    />
+                </button>
+            </div>
         </div>
-    </div>
-</header>
+        <LayoutMobileSidebar v-model="isOpen" />
+    </header>
 </template>
