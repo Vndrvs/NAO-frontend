@@ -29,30 +29,28 @@ defineProps<{
             as="div"
             class="w-full"
         >
-            <HDisclosureButton class="inline-flex items-center gap-4 px-4 py-3 text-left text-text-secondary" >
+            <HDisclosureButton class="inline-flex items-center gap-4 px-4 py-3 text-left text-text-secondary cursor-pointer" >
                 <div class="flex items-center gap-4">
                     <Icon 
                         v-if="item.icon"
                         :name="item.icon" 
                         class="w-5 h-5 text-text-secondary"
                     />
-                    <p class="truncate">{{ item.name }}</p>
+                    <span class="truncate text-text-secondary"> {{ item.name }} </span>
                 </div>
-                <div>
                     <Icon 
                         name="lucide:chevron-down" 
                         :class="[open && 'rotate-180']"
                         class="h-5 w-5 text-text-secondary transition"
                     />
-                </div>
             </HDisclosureButton>
 
-            <HDisclosurePanel class="mx-6 flex flex-col border-l px-3">
+            <HDisclosurePanel class="mx-6 flex flex-col border-l px-3 border-text-secondary">
                 <NuxtLink 
                     v-for="subItem in item.children"
                     :key="subItem.to"
                     :to="subItem.to"
-                    class="rounded-md px-3 py-1.5 text-sm hover:bg-muted" 
+                    class="rounded-md px-3 py-1.5 text-sm hover:bg-muted text-text-secondary" 
                 >
                     {{ subItem.name }}
                 </NuxtLink>

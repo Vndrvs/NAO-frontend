@@ -26,6 +26,7 @@
   "devDependencies": {
     "@iconify-json/dashicons": "^1.2.1",
     "@iconify-json/lucide": "^1.2.86",
+    "@nuxt/devtools": "^3.1.1",
     "@nuxtjs/color-mode": "^4.0.0",
     "sass": "^1.97.2"
   }

@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const isOpen = defineModel<boolean>({ default: false });
+</script>
+
 <template>
     <div>
         <HTransitionRoot
@@ -47,7 +51,3 @@
 </HTransitionRoot>
 </div>
 </template>
-
-<script setup lang="ts">
-    const isOpen = false;
-</script>

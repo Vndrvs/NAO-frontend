@@ -12,11 +12,14 @@
             <div class="flex items-center gap-3">
                 <button
                     aria-label="Open menu"
-                    class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-background lg:hidden"
+                    class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-text-secondary lg:hidden"
                     @click="isOpen = true"
                 >
                 <span class="sr-only">Button used to open menu</span>
-                <Icon name="heroicons:bars-2" />
+                <Icon 
+                name="heroicons:bars-2" 
+                class="text-text-secondary"
+                />
                 </button>
                 <Icon
                     name="uil:github"

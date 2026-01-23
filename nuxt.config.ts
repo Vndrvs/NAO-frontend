@@ -14,11 +14,12 @@ export default defineNuxtConfig({
         },
     },
   modules: [
-   '@nuxt/eslint',
-   '@nuxt/fonts',
-   '@nuxt/icon',
-   '@nuxtjs/color-mode',
-   'nuxt-headlessui',
+    '@nuxt/devtools',
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+    '@nuxtjs/color-mode',
+    'nuxt-headlessui',
   ],
   headlessui: {
     prefix: 'H'

@@ -3,5 +3,6 @@
 </script>
 
 <template>
-    <h1>This is index</h1>
+    <GameTable />
+    <GameCard />
 </template>
