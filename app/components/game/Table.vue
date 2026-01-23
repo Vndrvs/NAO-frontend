@@ -1,57 +1,78 @@
 <script setup lang="ts">
-const players = ref([
-  { id: 1, name: "Opponent", position: "top" },
-  { id: 4, name: "Player", position: "bottom" },
-]);
-
-const selfHand = ref([
-  { id: 1, name: "Opponent", position: "top" },
-  { id: 4, name: "Player", position: "bottom" },
-]);
-
-const villainHand = ref([
-  { id: 1, name: "Opponent", position: "top" },
-  { id: 4, name: "Player", position: "bottom" },
-]);
-
-const board = ref([
-  { id: 1, name: "Opponent", position: "top" },
-  { id: 4, name: "Player", position: "bottom" },
-]);
-
-const getSeatClass = (pos: string) => {
-  const base = "absolute transform -translate-x-1/2 -translate-y-1/2";
-  const positions: Record<string, string> = {
-    'top': "top-0 left-1/2",
-    'bottom': "top-full left-1/2",
-  };
-  return `${base} ${positions[pos]}`;
-};
+defineProps<{
+	stage: number;
+	myHand: number[];
+	oppHand: number[];
+	board: number[];
+}>();
 </script>
 
 <template>
-  <div class="relative flex h-125 w-full items-center justify-center p-6 pt-10">
-    <div class="relative aspect-2/4 h-full w-full max-w-90 rounded-full border-8 border-component-bg bg-bg-secondary shadow-2xl"
-    >
-      <div class="absolute inset-0 flex flex-col items-center justify-center">
-        <span class="text-xs font-mono text-text-secondary">POT</span>
-        <span class="text-xl font-bold text-text-primary">$1,250</span>
-      </div>
+	<div
+		class="relative w-full max-w-[340px] aspect-[3/5] rounded-[170px] border-[8px] border-[#2c1e14] shadow-2xl bg-radial from-poker-green-light to-poker-green bg-grain perspective-1000"
+	>
+		<div class="absolute top-12 left-1/2 -translate-x-1/2 z-30">
+  			<div class="flex space-x-1">
+				<transition-group name="deal">
+					<GameCard
+						v-for="id in oppHand"
+						:key="'opp'+id"
+						:card-id="id"
+						:is-flipped="false"
+					/>
+				</transition-group>
+			</div>
+		</div>
 
-      <div 
-        v-for="player in players" 
-        :key="player.id"
-        :class="getSeatClass(player.position)"
-      >
-        <div class="flex flex-col items-center">
-          <div class="size-12 rounded-full border-2 border-border bg-bg p-1 shadow-sm">
-            <div class="h-full w-full rounded-full bg-component-bg" />
-          </div>
-          <div class="mt-1 rounded bg-black/80 px-2 py-0.5 text-[10px] text-white">
-            {{ player.name }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+		<div class="absolute inset-0 flex flex-col items-center justify-center gap-6">
+			<div 
+				ref="deckEl"
+				class="w-12 h-18 bg-red-800 rounded-md border-b-4 border-red-950 shadow-xl z-50" 
+			/>
+
+			<div class="flex gap-1 z-20">
+				<div
+					v-for="i in 5"
+					:key="i"
+					class="w-12 h-18 rounded-md border border-white/10 bg-black/30 border-dashed flex items-center justify-center"
+				>
+					<transition name="deal">
+						<GameCard
+							v-if="board[i-1] !== undefined"
+							:card-id="board[i-1]"
+							:is-flipped="true"
+						/>
+					</transition>
+				</div>
+			</div>
+		</div>
+		
+		<div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-30">
+			<div class="flex flex-row space-x-1">
+				<transition-group name="deal">
+					<GameCard
+						v-for="id in myHand"
+						:key="'my'+id"
+						:card-id="id"
+						:is-flipped="true"
+					/>
+				</transition-group>
+			</div>
+			</div>
+		</div>
 </template>
+
+<style scoped>
+.deal-enter-active {
+  transition:
+    opacity 900ms ease-out,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deal-enter-from {
+  --ty: -120px;
+  --tz: 200px;
+  opacity: 0;
+}
+
+</style>

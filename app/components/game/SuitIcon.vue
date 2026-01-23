@@ -22,10 +22,13 @@ const iconPath = computed(() => SUIT_PATHS[props.name])
 
 <template>
   <svg 
-    viewBox="0 0 24 24" 
+    viewBox="0 0 512 512" 
+    width="100%" 
+    height="100%"
     fill="currentColor" 
     xmlns="http://www.w3.org/2000/svg"
     class="block"
+    preserveAspectRatio="xMidYMid meet"
   >
     <path :d="iconPath" />
   </svg>
