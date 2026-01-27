@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-bg">
     <LayoutHeader />
     <div class="container mx-auto lg:grid lg:grid-cols-12 lg:gap-10 px-4">
       

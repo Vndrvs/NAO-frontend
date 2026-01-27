@@ -6,6 +6,9 @@
 					<NuxtRouteAnnouncer />
 					<NuxtPage />
 				</main>
+				<ClientOnly>
+					<ToastContainer />
+				</ClientOnly>
 			</NuxtLayout>
 		</Body>
 	</Html>

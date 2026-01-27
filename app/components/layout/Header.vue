@@ -7,7 +7,7 @@
 </script>
 
 <template>
-    <header class="sticky top-0 z-20 border-b bg-bg backdrop-blur">
+    <header class="sticky top-0 z-20 border-b backdrop-blur pl-4 pr-4 border-b-text-secondary">
         <div class="container mx-auto flex h-16 items-center justify-between">
             <div class="flex items-center gap-3">
                 <button
