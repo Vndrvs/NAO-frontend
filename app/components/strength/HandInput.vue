@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import { type SuitName, RANKS, RANK_NAMES, useDeck } from '@/composables/useDeck';
+import { useAnalysisStore } from '~/stores/analysis';
 
 const { getCardDetail } = useDeck();
+const analysisStore = useAnalysisStore();
 
 const SUITS: { char: string; name: SuitName; color: string }[] = [
 	{ char: 'h', name: 'hearts', color: 'text-red-500' },
@@ -17,7 +19,7 @@ const SUIT_INDEX: Record<string, number> = {
 
 // STATE, has the cards selected for analysis and their corresponding details
 // using these for preventive UX behaviour
-const addedCards = ref<number[]>([]);
+const addedCards = computed(() => analysisStore.holeCards);
 const selectedRank = ref<string | null>(null);
 const selectedSuit = ref<string | null>(null);
 
@@ -31,7 +33,7 @@ const isCardTaken = (rank: string, suitChar: string): boolean => {
 };
 
 // PREVENTIVE UX constants and helpers
-const isFull = computed(() => addedCards.value.length >= 2);
+const isFull = computed(() => analysisStore.isHandFull);
 
 const isRankDisabled = (rank: string) => {
     if (isFull.value) return true;
@@ -58,7 +60,16 @@ const addCard = () => {
 
         if (rankIdx !== -1 && suitIdx !== undefined) {
             const id = (rankIdx * 4) + suitIdx;
-            addedCards.value.push(id);
+            
+            // Push to a temporary array because your store action 
+            // setSelfHand expects exactly 2 cards
+            const currentCards = [...analysisStore.holeCards, id];
+            
+            if (currentCards.length <= 2) {
+                // If it's the first card, we might need a push action 
+                // OR update setSelfHand to handle 1-2 cards.
+                analysisStore.holeCards.push(id);
+            }
         }
         selectedRank.value = null;
         selectedSuit.value = null;
@@ -66,9 +77,9 @@ const addCard = () => {
 };
 
 const clear = () => {
-    addedCards.value = [];
-    selectedRank.value = null;
-    selectedSuit.value = null;
+	selectedRank.value = null;
+	selectedSuit.value = null;
+	analysisStore.clearHand();
 };
 
 const handText = computed(() => {
@@ -83,6 +94,10 @@ const handText = computed(() => {
 
         return `${fullRank} of ${fullSuit}`;
     }).join(', ');
+});
+
+onMounted(() => {
+	analysisStore.clearHand();
 });
 </script>
 

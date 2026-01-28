@@ -53,14 +53,14 @@ export const getComboInfo = (combo: CardPair): ComboAnalysis => {
 
 // Chen's gap means how many cards are between, so we have to deduct one from their difference
 export const gapScorer = (index1: number, index2: number): number => {
-  const gap = Math.abs(index1 - index2) - 1;
-
-  if (gap <= 0) return 0;
-  if (gap === 1) return 1;
-  if (gap === 2) return 2;
-  if (gap === 3) return 4;
-
-  return 5;
+	const gap = Math.abs(index1 - index2) - 1;
+	
+	if (gap <= 0) return 0;
+	if (gap === 1) return 1;
+	if (gap === 2) return 2;
+	if (gap === 3) return 4;
+	
+	return 5;
 }
 
 export const chenScore = (combo: CardPair): number => {
