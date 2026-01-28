@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/color-mode',
     'nuxt-headlessui',
+    '@pinia/nuxt',
   ],
   headlessui: {
     prefix: 'H'
