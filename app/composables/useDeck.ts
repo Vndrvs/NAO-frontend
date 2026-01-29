@@ -1,13 +1,18 @@
 export type SuitName = 'clubs' | 'diamonds' | 'hearts' | 'spades'
 
 type CardDetail = {
-  id: number
-  rank: typeof RANKS[number]
-  suit: SuitName
-  color: string
+    id: number
+    rank: typeof RANKS[number]
+    suit: SuitName
+    color: string
 } | null
 
 export const RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+
+export const RANK_SHORT: Record<string, string> = {
+    '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9',
+    '10': 'T', 'J': 'J', 'Q': 'Q', 'K': 'K', 'A': 'A'
+};
 
 export const RANK_NAMES: Record<string, string> = {
     'A': 'Ace',

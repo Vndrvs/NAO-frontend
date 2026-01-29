@@ -102,11 +102,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="p-6 bg-bg border border-white/10 rounded-xl w-full shadow-2xl flex flex-col gap-6">
-        
+    <div class="p-6 bg-bg border border-white/30 rounded-xl w-full shadow-2xl flex flex-col gap-6">
         <div class="flex items-center justify-between">
             <h2 class="text-text-primary text-lg font-bold flex items-center gap-2">
-                <span class="w-2 h-6 bg-blue-500 rounded-full"></span>
                 Preflop Hand Analyzer
             </h2>
             <button 

@@ -112,3 +112,4 @@ export const chenScore = (combo: CardPair): number => {
 	// we round up the result
 	return Math.ceil(score!);
 }
+
